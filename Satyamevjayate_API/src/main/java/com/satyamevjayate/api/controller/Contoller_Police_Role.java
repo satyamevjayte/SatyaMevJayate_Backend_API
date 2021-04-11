@@ -3,11 +3,14 @@ package com.satyamevjayate.api.controller;
 import java.math.BigInteger;
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -45,6 +48,17 @@ public class Contoller_Police_Role {
 	{
 		Police_Role_Service.delete_Police_Role(id);
 		return "PoliceRole Delete successfully";
+	}
+	
+	@PutMapping("/EditPoliceRole/{id}")
+	public ResponseEntity<Object> editPoliceRole(@RequestBody PoliceRole policerole, @PathVariable BigInteger id) {
+
+		
+		policerole.setRoleID(id);
+		
+		Police_Role_Service.save_Police_Role(policerole);
+
+		return ResponseEntity.noContent().build();
 	}
 
 }
