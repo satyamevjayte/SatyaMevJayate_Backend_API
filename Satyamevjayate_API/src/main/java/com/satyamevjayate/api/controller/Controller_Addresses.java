@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.satyamevjayate.api.entity.Addresses;
-import com.satyamevjayate.api.entity.PoliceRole;
+
 import com.satyamevjayate.api.services.Addresses_Services;
 
 @RestController
