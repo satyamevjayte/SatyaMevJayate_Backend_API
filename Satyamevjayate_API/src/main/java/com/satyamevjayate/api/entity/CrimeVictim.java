@@ -20,8 +20,8 @@ public class CrimeVictim {
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         @Column(name="CrimeVictimID")
         private BigInteger CrimeVictimID;
-//        @Column(name="CrimeID")
-//        private BigInteger CrimeID;
+        @Column(name="CrimeID")
+        private BigInteger CrimeID;
 //        @Column(name="AddressID")
 //        private BigInteger AddressID;
 //        @Column(name="PersonID")
@@ -31,29 +31,29 @@ public class CrimeVictim {
         
         
         
-        @ManyToOne(optional=false)
-        @JoinColumn(foreignKey = @ForeignKey(name="AddressID"), name = "AddressId",insertable=false, updatable=false)
+        @OneToOne(optional=false)
+        @JoinColumn(name = "AddressId")
         private Addresses victimaddress;
     	
-        @ManyToOne(optional=false)
-        @JoinColumn(foreignKey = @ForeignKey(name="CrimeID"), name = "CrimeId",insertable=false, updatable=false)
-        private Crime crmvictimcrimeID;
-        
-    	@ManyToOne(optional=false)
-        @JoinColumn(foreignKey = @ForeignKey(name="ContactID"), name = "ContactId",insertable=false, updatable=false)
+//        @ManyToOne(optional=false)
+//        @JoinColumn(foreignKey = @ForeignKey(name="CrimeID"), name = "CrimeId",insertable=false, updatable=false)
+//        private Crime crmvictimcrimeID;
+//
+    	@OneToOne(optional=false)
+        @JoinColumn(name = "ContactId")
         private Contact crmvictimecontact;
     	
-    	@ManyToOne(optional=false)
-        @JoinColumn(foreignKey = @ForeignKey(name="PersonID"), name = "PersonID",insertable=false, updatable=false)
+    	@OneToOne(optional=false)
+        @JoinColumn(name = "PersonID")
         private Person victimperson;
         
     	
-    	@OneToMany(mappedBy = "crmvictimdocID", cascade = CascadeType.ALL, orphanRemoval = true)
+    	@OneToMany(mappedBy = "crmvictimdocID")
         @JsonIgnore
         private List<CrimeVictimDocument> crimevictimdocument;
     	
         @Column(name="Height")
         private Double Height;
         @Column(name="Weight")
-        private BigInteger Weight;
+        private Double Weight;
 }

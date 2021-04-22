@@ -1,10 +1,6 @@
 package com.satyamevjayate.api.services;
 
-import com.satyamevjayate.api.entity.Addresses;
-import com.satyamevjayate.api.entity.Contact;
-import com.satyamevjayate.api.entity.Crime;
-import com.satyamevjayate.api.entity.CrimeVictim;
-import com.satyamevjayate.api.entity.Person;
+import com.satyamevjayate.api.entity.*;
 import com.satyamevjayate.api.repo.Addresses_Repository;
 import com.satyamevjayate.api.repo.Contact_Repository;
 import com.satyamevjayate.api.repo.CrimeVictim_Repository;
@@ -40,45 +36,38 @@ public class CrimeVictim_Services {
 
     public CrimeVictim saveCrimeVictim(CrimeVictim CrimeVictim)
     {
-    	 Addresses address = address_repo.findById(CrimeVictim.getVictimaddress().getAddressID()).orElse(null);
-	        if (null == address) {
-	            address = new Addresses();
-	        }
-	        address.setAddressLine1(CrimeVictim.getVictimaddress().getAddressLine1());
-	        address.setAddressLine2(CrimeVictim.getVictimaddress().getAddressLine2());
-	        address.setCity(CrimeVictim.getVictimaddress().getCity());
-	        address.setCountry(CrimeVictim.getVictimaddress().getCountry());
-	        address.setState(CrimeVictim.getVictimaddress().getState());
-	        address.setZipCode(CrimeVictim.getVictimaddress().getZipCode());
-	        CrimeVictim.setVictimaddress(address);
-	        
-	    Contact contact=contact_repo.findById(CrimeVictim.getCrmvictimecontact().getContactId()).orElse(null);
-	    	if(null==contact)
-	    	{
-	    		contact=new Contact();
-	    	}
-	    	contact.setContactNumber(CrimeVictim.getCrmvictimecontact().getContactNumber());
-		    contact.setContactEmail(CrimeVictim.getCrmvictimecontact().getContactEmail());
-		    CrimeVictim.setCrmvictimecontact(contact);
-		    
-		Person person = person_repo.findById(CrimeVictim.getVictimperson().getPerson_Id()).orElse(null);
-	        if (null == person) {
-	            person = new Person();
-	        }
-	        person.setFirst_Name(CrimeVictim.getVictimperson().getFirst_Name());
-	        person.setLast_Name(CrimeVictim.getVictimperson().getLast_Name());
-	        person.setGender(CrimeVictim.getVictimperson().getGender());
-	        person.setDate_of_birth(CrimeVictim.getVictimperson().getDate_of_birth());
-	        person.setPerson_Image(CrimeVictim.getVictimperson().getPerson_Image());
-	        CrimeVictim.setVictimperson(person);
-	           
-	    Crime crime = crime_repo.findById(CrimeVictim.getCrmvictimcrimeID().getCrimeID()).orElse(null);
-	        if (null == crime) {
-	            crime = new Crime();
-	        }
-	        crime.setCrimeID(CrimeVictim.getCrmvictimcrimeID().getCrimeID());
-	        CrimeVictim.setCrmvictimcrimeID(crime);
-        return CrimeVictim_repo.save(CrimeVictim);
+
+		Addresses address =new Addresses();
+
+		address.setAddressLine1(CrimeVictim.getVictimaddress().getAddressLine1());
+		address.setAddressLine2(CrimeVictim.getVictimaddress().getAddressLine2());
+		address.setCity(CrimeVictim.getVictimaddress().getCity());
+		address.setCountry(CrimeVictim.getVictimaddress().getCountry());
+		address.setState(CrimeVictim.getVictimaddress().getState());
+		address.setZipCode(CrimeVictim.getVictimaddress().getZipCode());
+		address_repo.save(address);
+		CrimeVictim.setVictimaddress(address);
+
+		Contact contact=new Contact();
+
+		contact.setContactNumber(CrimeVictim.getCrmvictimecontact().getContactNumber());
+		contact.setContactEmail(CrimeVictim.getCrmvictimecontact().getContactEmail());
+		contact_repo.save(contact);
+		CrimeVictim.setCrmvictimecontact(contact);
+
+		Person person =  new Person();
+
+		person.setFirst_Name(CrimeVictim.getVictimperson().getFirst_Name());
+		person.setLast_Name(CrimeVictim.getVictimperson().getLast_Name());
+		person.setGender(CrimeVictim.getVictimperson().getGender());
+		person.setDate_of_birth(CrimeVictim.getVictimperson().getDate_of_birth());
+		person.setPerson_Image(CrimeVictim.getVictimperson().getPerson_Image());
+		person_repo.save(person);
+		CrimeVictim.setVictimperson(person);
+
+
+
+		return CrimeVictim_repo.save(CrimeVictim);
     }
 
     public CrimeVictim getCrimeVictim(BigInteger Id)

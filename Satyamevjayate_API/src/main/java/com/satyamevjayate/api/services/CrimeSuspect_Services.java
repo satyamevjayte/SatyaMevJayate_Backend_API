@@ -37,65 +37,71 @@ public class CrimeSuspect_Services {
 
     public List<CrimeSuspect> listAllCrimeSuspect()
     {
-        return CrimeSuspect_repo.findAll();
+       return CrimeSuspect_repo.findAll();
+
     }
 
     public CrimeSuspect saveCrimeSuspect(CrimeSuspect CrimeSuspect)
     {
     	
-    	 Addresses address = address_repo.findById(CrimeSuspect.getSusaddress().getAddressID()).orElse(null);
-	        if (null == address) {
-	            address = new Addresses();
-	        }
+    	 Addresses address =new Addresses();
+
 	        address.setAddressLine1(CrimeSuspect.getSusaddress().getAddressLine1());
 	        address.setAddressLine2(CrimeSuspect.getSusaddress().getAddressLine2());
 	        address.setCity(CrimeSuspect.getSusaddress().getCity());
 	        address.setCountry(CrimeSuspect.getSusaddress().getCountry());
 	        address.setState(CrimeSuspect.getSusaddress().getState());
 	        address.setZipCode(CrimeSuspect.getSusaddress().getZipCode());
+	        address_repo.save(address);
 	        CrimeSuspect.setSusaddress(address);
 	        
-	    Contact contact=contact_repo.findById(CrimeSuspect.getSuscontact().getContactId()).orElse(null);
-	    	if(null==contact)
-	    	{
-	    		contact=new Contact();
-	    	}
+	    Contact contact=new Contact();
+
 	    	contact.setContactNumber(CrimeSuspect.getSuscontact().getContactNumber());
 		    contact.setContactEmail(CrimeSuspect.getSuscontact().getContactEmail());
+		    contact_repo.save(contact);
 		    CrimeSuspect.setSuscontact(contact);
 		    
-		Person person = person_repo.findById(CrimeSuspect.getSusperson().getPerson_Id()).orElse(null);
-	        if (null == person) {
-	            person = new Person();
-	        }
+		Person person =  new Person();
+
 	        person.setFirst_Name(CrimeSuspect.getSusperson().getFirst_Name());
 	        person.setLast_Name(CrimeSuspect.getSusperson().getLast_Name());
 	        person.setGender(CrimeSuspect.getSusperson().getGender());
 	        person.setDate_of_birth(CrimeSuspect.getSusperson().getDate_of_birth());
 	        person.setPerson_Image(CrimeSuspect.getSusperson().getPerson_Image());
+	        person_repo.save(person);
 	        CrimeSuspect.setSusperson(person);
 
-	        Crime crime = new Crime();
 
-	        crime.setCrimeID(CrimeSuspect.getCrimeid().getCrimeID());
-	        CrimeSuspect.setCrimeid(crime);
-	        
 	    return CrimeSuspect_repo.save(CrimeSuspect);
     }
 
     public CrimeSuspect getCrimeSuspect(BigInteger Id)
     {
-//    	if(CrimeSuspect_repo.findById(Id).isPresent())
-//		{
-			return CrimeSuspect_repo.findById(Id).get();
-//		}
+		CrimeSuspect c=new CrimeSuspect();
+		try {
+			c= CrimeSuspect_repo.findById(Id).get();
+		}
+		catch (Exception e){
 
+		}
+
+//		}
+		return c;
 
     }
 
 
-    public void deleteCrimeSuspect(BigInteger Id)
+    public String deleteCrimeSuspect(BigInteger Id)
     {
-        CrimeSuspect_repo.deleteById(Id);
+    	String res;
+    	if(CrimeSuspect_repo.findById(Id).isPresent()){
+			CrimeSuspect_repo.deleteById(Id);
+			res="Record with "+Id+" id Deleted Successfully!!";
+		}
+    	else{
+			res="Record with "+Id+" id Does not exists!!";
+		}
+		return res;
     }
 }

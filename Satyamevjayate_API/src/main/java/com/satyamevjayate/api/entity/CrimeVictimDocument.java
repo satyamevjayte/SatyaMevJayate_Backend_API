@@ -23,7 +23,7 @@ public class CrimeVictimDocument {
     
     
     @ManyToOne(optional=false)
-    @JoinColumn(foreignKey = @ForeignKey(name="CrimeVictimID"), name = "CrimeVictimId",insertable=false, updatable=false)
+    @JoinColumn(name = "CrimeVictimId")
     private CrimeVictim crmvictimdocID;
 
     @Column(name="DocumentType")

@@ -22,8 +22,8 @@ public class CrimeSuspect {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="CrimeSuspectID")
     private BigInteger CrimeSuspectID;
-//    @Column(name="CrimeID")
-//    private BigInteger CrimeID;
+    @Column(name="CrimeID")
+    private BigInteger CrimeID;
 //    @Column(name="AddressID")
 //    private BigInteger AddressID;
 //    @Column(name="PersonID")
@@ -35,9 +35,9 @@ public class CrimeSuspect {
     @JoinColumn(name = "AddressId")
     private Addresses susaddress;
 	
-    @ManyToOne(optional=false)
-    @JoinColumn(name = "CrimeId")
-    private Crime crimeid;
+//    @ManyToOne(optional=false)
+//    @JoinColumn(name = "CrimeId")
+//    private Crime crimeid;
     
 	@OneToOne(optional=false)
     @JoinColumn( name = "ContactId")
