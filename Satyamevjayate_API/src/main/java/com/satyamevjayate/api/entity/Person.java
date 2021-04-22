@@ -1,74 +1,99 @@
 package com.satyamevjayate.api.entity;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.math.BigInteger;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name="person")
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="Person_Id")
-    private BigInteger Person_Id;
+    @Column(name="PersonId")
+    private BigInteger PersonId;
 
-    @Column(name="First_Name")
-    private String First_Name;
+    @Column(name="FirstName")
+    private String FirstName;
 
-    @Column(name="Last_Name")
-    private String Last_Name;
+    @Column(name="LastName")
+    private String LastName;
 
-    @Column(name="date_of_birth")
-    private Date date_of_birth;
+    @Column(name="DateOfBirth")
+    private Date DateOfBirth;
 
     @Column(name="Gender")
     private String Gender;
 
-    @Column(name="Person_Image")
-    private byte[] Person_Image;
+    @Column(name="PersonImage")
+    private byte[] PersonImage;
 
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<Police> police;
+    
+    @OneToOne(mappedBy = "susperson")
+    @JsonIgnore
+    private CrimeSuspect crimesuspect;
+    
+    
+    @OneToMany(mappedBy = "victimperson")
+    @JsonIgnore
+    private List<CrimeVictim> crimevictim;
+    
+    @OneToMany(mappedBy = "criminalperson")
+    @JsonIgnore
+    private List<Criminal> criminal;
+    
+    @OneToMany(mappedBy = "workerperson")
+    @JsonIgnore
+    private List<Worker> worker;
+    
     public Person() {
     }
 
     public Person(BigInteger personId, String firstName, String lastName, Date dateOfBirth, String gender, byte[] personImage) {
-        Person_Id = personId;
-        First_Name = firstName;
-        Last_Name = lastName;
-        date_of_birth = dateOfBirth;
+        PersonId = personId;
+        FirstName = firstName;
+        LastName = lastName;
+        DateOfBirth = dateOfBirth;
         Gender = gender;
-        Person_Image = personImage;
+        PersonImage = personImage;
     }
 
     public BigInteger getPerson_Id() {
-        return Person_Id;
+        return PersonId;
     }
 
     public void setPerson_Id(BigInteger person_Id) {
-        Person_Id = person_Id;
+        PersonId = person_Id;
     }
 
     public String getFirst_Name() {
-        return First_Name;
+        return FirstName;
     }
 
     public void setFirst_Name(String first_Name) {
-        First_Name = first_Name;
+        FirstName = first_Name;
     }
 
     public String getLast_Name() {
-        return Last_Name;
+        return LastName;
     }
 
     public void setLast_Name(String last_Name) {
-        Last_Name = last_Name;
+        LastName = last_Name;
     }
 
     public Date getDate_of_birth() {
-        return date_of_birth;
+        return DateOfBirth;
     }
 
     public void setDate_of_birth(Date date_of_birth) {
-        this.date_of_birth = date_of_birth;
+        this.DateOfBirth = date_of_birth;
     }
 
     public String getGender() {
@@ -80,10 +105,10 @@ public class Person {
     }
 
     public byte[] getPerson_Image() {
-        return Person_Image;
+        return PersonImage;
     }
 
     public void setPerson_Image(byte[] person_Image) {
-        Person_Image = person_Image;
+        PersonImage = person_Image;
     }
 }
