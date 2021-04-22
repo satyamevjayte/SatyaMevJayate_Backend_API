@@ -23,12 +23,12 @@ public class Controller_CrimeType {
 	@Autowired
 	private CrimeType_Services crimetype_Services;
 	
-	@GetMapping("/GetAllCrimeType")
+	@GetMapping("/crimetype")
 	public List<CrimeType> getAllCrimeType() {
 		return crimetype_Services.listAllCrimeType();
 	}
 	
-	@GetMapping("/GetCrimeType/{id}")
+	@GetMapping("/crimetype/{id}")
 	public CrimeType getCrimeType(@PathVariable BigInteger id)
 	{
 		
@@ -39,7 +39,7 @@ public class Controller_CrimeType {
 		
 	}
 	
-	@PostMapping("/AddCrimeType")
+	@PostMapping("/crimetype")
 	public String addCrimeType(@RequestBody CrimeType crimetype)
 	{
 		crimetype_Services.saveCrimeType(crimetype);;
@@ -47,14 +47,14 @@ public class Controller_CrimeType {
 	}	
 	
 	
-	@DeleteMapping("/DeleteCrimeType/{id}")
+	@DeleteMapping("/crimetype/{id}")
 	public String deleteCrimeType(@PathVariable BigInteger id)
 	{
 		crimetype_Services.deleteCrimeType(id);;
 	    return "Delete CrimeType Successfully";
 	}
 	
-	@PutMapping("/EditCrimeType/{id}")
+	@PutMapping("/crimetype/{id}")
 	public ResponseEntity<Object> editCrimeType(@RequestBody CrimeType crimetype, @PathVariable BigInteger id) {
 
 		crimetype.setCrimeTypeId(id);
