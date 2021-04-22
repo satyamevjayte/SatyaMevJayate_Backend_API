@@ -23,19 +23,19 @@ public class Controller_PrisoningType {
 	@Autowired
 	private PrisoningType_Services prisoningtype_services;
 	
-	@GetMapping("/GetAllPrisoningType")
+	@GetMapping("/prisoningtype")
 	public List<PrisoningType> getAllPrisoningType() {
 		return prisoningtype_services.listAllPrisoningType();
 	}
 	
-	@GetMapping("/GetPrisoningType/{id}")
+	@GetMapping("/prisoningtype/{id}")
 	public PrisoningType getPrisoningType(@PathVariable BigInteger id)
 	{
 		PrisoningType p= prisoningtype_services.getPrisoningType(id);
 		return p;
 	}
 	
-	@PostMapping("/AddPrisoningType")
+	@PostMapping("/prisoningtype")
 	public String addPrisoningType(@RequestBody PrisoningType p)
 	{
 		prisoningtype_services.savePrisoningType(p);
@@ -43,14 +43,14 @@ public class Controller_PrisoningType {
 		
 	}
 	
-	@DeleteMapping("/DeletePrisoningType/{id}")
+	@DeleteMapping("/prisoningtype/{id}")
 	public String deletePrisoningType(@PathVariable BigInteger id)
 	{
 		prisoningtype_services.deletePrisoningType(id);
 		return "PrisoningType Delete successfully";
 	}
 	
-	@PutMapping("/EditPrisoningType/{id}")
+	@PutMapping("/prisoningtype/{id}")
 	public ResponseEntity<Object> editPrisoningType(@RequestBody PrisoningType prisoningtype, @PathVariable BigInteger id) {
 
 		
