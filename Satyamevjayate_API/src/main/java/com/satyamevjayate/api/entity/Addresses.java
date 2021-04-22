@@ -1,13 +1,20 @@
 package com.satyamevjayate.api.entity;
 
 import java.math.BigInteger;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="addresses")
@@ -35,6 +42,37 @@ public class Addresses {
 	
 	@Column(name="Country")
 	private String Country;
+	
+	
+	@OneToOne(mappedBy = "policeaddress")
+    @JsonIgnore
+    private Police policeaddress;
+	
+	@OneToOne(mappedBy = "crmaddress")
+    @JsonIgnore
+    private Crime crimeaddress;
+	
+	@OneToMany(mappedBy = "susaddress")
+    @JsonIgnore
+    private List<CrimeSuspect> crimesuspect;
+	
+	@OneToMany(mappedBy = "victimaddress", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<CrimeVictim> crimevictime;
+	
+	
+	@OneToMany(mappedBy = "criminaladdress", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<Criminal> criminal;
+	
+	@OneToOne(mappedBy = "policestationaddress")
+    @JsonIgnore
+    private PoliceStation policestation;
+	
+	@OneToOne(mappedBy = "workeraddress")
+    @JsonIgnore
+    private Worker worker;
+	
 	
 	public Addresses()
 	{

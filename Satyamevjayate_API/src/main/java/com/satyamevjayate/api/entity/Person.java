@@ -31,26 +31,26 @@ public class Person {
     @Column(name="PersonImage")
     private byte[] PersonImage;
 
-    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(mappedBy = "person")
     @JsonIgnore
-    private List<Police> police;
+    private Police police;
     
-    @OneToOne(mappedBy = "susperson")
+    @OneToMany(mappedBy = "susperson")
     @JsonIgnore
-    private CrimeSuspect crimesuspect;
+    private List<CrimeSuspect> crimesuspect;
     
     
-    @OneToMany(mappedBy = "victimperson")
+    @OneToMany(mappedBy = "victimperson", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<CrimeVictim> crimevictim;
     
-    @OneToMany(mappedBy = "criminalperson")
+    @OneToMany(mappedBy = "criminalperson", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<Criminal> criminal;
     
-    @OneToMany(mappedBy = "workerperson")
+    @OneToOne(mappedBy = "workerperson")
     @JsonIgnore
-    private List<Worker> worker;
+    private Worker worker;
     
     public Person() {
     }

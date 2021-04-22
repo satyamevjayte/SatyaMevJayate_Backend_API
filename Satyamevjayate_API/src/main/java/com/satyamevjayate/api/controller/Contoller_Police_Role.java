@@ -23,19 +23,19 @@ public class Contoller_Police_Role {
 	@Autowired
 	private Police_Role_Services Police_Role_Service;
 
-	@GetMapping("/GetAllPoliceRole")
+	@GetMapping("/policerole")
 	public List<PoliceRole> getAllPolice_Role() {
 		return Police_Role_Service.listAll_Police_Role();
 	}
 	
-	@GetMapping("/GetPoliceRole/{id}")
+	@GetMapping("/policerole/{id}")
 	public PoliceRole getPoliceRole(@PathVariable BigInteger id)
 	{
 		PoliceRole p= Police_Role_Service.getPolice_Role(id);
 		return p;
 	}
 	
-	@PostMapping("/AddPoliceRole")
+	@PostMapping("/policerole")
 	public String addPoliceRole(@RequestBody PoliceRole p)
 	{
 		Police_Role_Service.save_Police_Role(p);
@@ -43,14 +43,14 @@ public class Contoller_Police_Role {
 		
 	}
 	
-	@DeleteMapping("/DeletePoliceRole/{id}")
+	@DeleteMapping("/policerole/{id}")
 	public String deletePoliceRole(@PathVariable BigInteger id)
 	{
 		Police_Role_Service.delete_Police_Role(id);
 		return "PoliceRole Delete successfully";
 	}
 	
-	@PutMapping("/EditPoliceRole/{id}")
+	@PutMapping("/policerole/{id}")
 	public ResponseEntity<Object> editPoliceRole(@RequestBody PoliceRole policerole, @PathVariable BigInteger id) {
 
 		

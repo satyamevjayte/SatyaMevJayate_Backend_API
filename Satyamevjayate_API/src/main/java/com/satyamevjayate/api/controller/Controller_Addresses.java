@@ -23,19 +23,19 @@ public class Controller_Addresses {
 	@Autowired
 	private Addresses_Services address_Services;
 	
-	@GetMapping("/GetAllAddress")
+	@GetMapping("/address")
 	public List<Addresses> getAllAddress() {
 		return address_Services.listAllAddresses();
 	}
 	
-	@GetMapping("/GetAddress/{id}")
+	@GetMapping("/address/{id}")
 	public Addresses getAddresses(@PathVariable BigInteger id)
 	{
 		Addresses address= address_Services.getAddress(id);
 		return address;
 	}
 	
-	@PostMapping("/AddAddress")
+	@PostMapping("/address")
 	public String addAddress(@RequestBody Addresses address)
 	{
 		address_Services.saveAddress(address);
@@ -43,14 +43,14 @@ public class Controller_Addresses {
 	}	
 	
 	
-	@DeleteMapping("/DeleteAddress/{id}")
+	@DeleteMapping("/address/{id}")
 	public String deleteAddress(@PathVariable BigInteger id)
 	{
 		address_Services.deleteAddress(id);
 	    return "Delete Address Successfully";
 	}
 	
-	@PutMapping("/EditAddress/{id}")
+	@PutMapping("/address/{id}")
 	public ResponseEntity<Object> editAddress(@RequestBody Addresses address, @PathVariable BigInteger id) {
 
 	

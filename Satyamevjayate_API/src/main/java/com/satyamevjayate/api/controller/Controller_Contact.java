@@ -23,19 +23,19 @@ public class Controller_Contact {
 	@Autowired
 	private Contact_Services contact_Services;
 	
-	@GetMapping("/GetAllContact")
+	@GetMapping("/contact")
 	public List<Contact> getAllContact() {
 		return contact_Services.listAllContact();
 	}
 	
-	@GetMapping("/GetContact/{id}")
+	@GetMapping("/contact/{id}")
 	public Contact getAddresses(@PathVariable BigInteger id)
 	{
 		Contact contact= contact_Services.getContact(id);
 		return contact;
 	}
 	
-	@PostMapping("/AddContact")
+	@PostMapping("/contact")
 	public String addContact(@RequestBody Contact contact)
 	{
 		contact_Services.saveContact(contact);;
@@ -43,14 +43,14 @@ public class Controller_Contact {
 	}	
 	
 	
-	@DeleteMapping("/DeleteContact/{id}")
+	@DeleteMapping("/contact/{id}")
 	public String deleteContact(@PathVariable BigInteger id)
 	{
 		contact_Services.deleteContact(id);
 	    return "Delete Contact Successfully";
 	}
 	
-	@PutMapping("/EditContact/{id}")
+	@PutMapping("/contact/{id}")
 	public ResponseEntity<Object> editContact(@RequestBody Contact contact, @PathVariable BigInteger id) {
 
 		
