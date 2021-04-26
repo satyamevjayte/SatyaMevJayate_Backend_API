@@ -1,6 +1,7 @@
 package com.satyamevjayate.api.controller;
 
 import com.satyamevjayate.api.entity.CrimeSuspect;
+import com.satyamevjayate.api.model.Crimesuspectmodel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,15 +15,15 @@ public class Controller_CrimeSuspect {
 private com.satyamevjayate.api.services.CrimeSuspect_Services CrimeSuspect_Services;
 
     @GetMapping("/crimesuspect")
-    public List<CrimeSuspect> getAllCrimeSuspect() {
+    public Crimesuspectmodel getAllCrimeSuspect() {
         return CrimeSuspect_Services.listAllCrimeSuspect();
     }
 
     @GetMapping("/crimesuspect/{id}")
-    public CrimeSuspect getCrimeSuspect(@PathVariable BigInteger id)
+    public Crimesuspectmodel getCrimeSuspect(@PathVariable BigInteger id)
     {
 
-        CrimeSuspect CrimeSuspect= CrimeSuspect_Services.getCrimeSuspect(id);
+        Crimesuspectmodel CrimeSuspect= CrimeSuspect_Services.getCrimeSuspect(id);
         return CrimeSuspect;
 
 
@@ -40,8 +41,8 @@ private com.satyamevjayate.api.services.CrimeSuspect_Services CrimeSuspect_Servi
     @DeleteMapping("/crimesuspect/{id}")
     public String deleteCrimeSuspect(@PathVariable BigInteger id)
     {
-        CrimeSuspect_Services.deleteCrimeSuspect(id);;
-        return "Delete CrimeSuspect Successfully";
+        String res= CrimeSuspect_Services.deleteCrimeSuspect(id);;
+        return res;
     }
 
     @PutMapping("/crimesuspect/{id}")

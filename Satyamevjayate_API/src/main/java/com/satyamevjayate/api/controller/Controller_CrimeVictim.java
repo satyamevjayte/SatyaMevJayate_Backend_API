@@ -1,55 +1,50 @@
 package com.satyamevjayate.api.controller;
 
 import com.satyamevjayate.api.entity.CrimeVictim;
+import com.satyamevjayate.api.model.Crimevictimmodel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigInteger;
 import java.util.List;
-
+@RestController
+@RequestMapping("/crimevictim")
 public class Controller_CrimeVictim {
     @Autowired
     private com.satyamevjayate.api.services.CrimeVictim_Services CrimeVictim_Services;
 
-    @GetMapping("/crimevictim")
-    public List<CrimeVictim> getAllCrimeVictim() {
+    @GetMapping("")
+    public Crimevictimmodel getAllCrimeVictim() {
         return CrimeVictim_Services.listAllCrimeVictim();
     }
 
-    @GetMapping("/crimevictim/{id}")
-    public CrimeVictim getCrimeVictim(@PathVariable BigInteger id)
+    @GetMapping("/{id}")
+    public Crimevictimmodel getCrimeVictim(@PathVariable BigInteger id)
     {
-
-        CrimeVictim CrimeVictim= CrimeVictim_Services.getCrimeVictim(id);
+        Crimevictimmodel CrimeVictim= CrimeVictim_Services.getCrimeVictim(id);
         return CrimeVictim;
-
-
-
     }
 
-    @PostMapping("/crimevictim")
+    @PostMapping("")
     public String addCrimeVictim(@RequestBody CrimeVictim CrimeVictim)
     {
-        CrimeVictim_Services.saveCrimeVictim(CrimeVictim);;
+        CrimeVictim_Services.saveCrimeVictim(CrimeVictim);
         return "CrimeVictim Add Successfully";
     }
 
-
-    @DeleteMapping("/crimevictim/{id}")
+    @DeleteMapping("/{id}")
     public String deleteCrimeVictim(@PathVariable BigInteger id)
     {
-        CrimeVictim_Services.deleteCrimeVictim(id);;
-        return "Delete CrimeVictim Successfully";
+        String res=CrimeVictim_Services.deleteCrimeVictim(id);
+        return res;
     }
 
-    @PutMapping("/crimevictim/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Object> editCrimeVictim(@RequestBody CrimeVictim CrimeVictim, @PathVariable BigInteger id) {
-
         CrimeVictim.setCrimeVictimID(id);
-
         CrimeVictim_Services.saveCrimeVictim(CrimeVictim);
-
         return ResponseEntity.noContent().build();
     }
+
 }

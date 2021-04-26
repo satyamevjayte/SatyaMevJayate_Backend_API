@@ -5,6 +5,7 @@ import com.satyamevjayate.api.entity.Contact;
 import com.satyamevjayate.api.entity.Crime;
 import com.satyamevjayate.api.entity.CrimeSuspect;
 import com.satyamevjayate.api.entity.Person;
+import com.satyamevjayate.api.model.Crimesuspectmodel;
 import com.satyamevjayate.api.repo.Addresses_Repository;
 import com.satyamevjayate.api.repo.Contact_Repository;
 import com.satyamevjayate.api.repo.CrimeSuspect_Repository;
@@ -15,7 +16,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CrimeSuspect_Services {
@@ -35,10 +39,18 @@ public class CrimeSuspect_Services {
     private Crime_Repository crime_repo;
     
 
-    public List<CrimeSuspect> listAllCrimeSuspect()
+    public Crimesuspectmodel listAllCrimeSuspect()
     {
-       return CrimeSuspect_repo.findAll();
+		Crimesuspectmodel crimesuspectmodel	=new Crimesuspectmodel();
+    	if(!CrimeSuspect_repo.findAll().isEmpty()){
 
+			crimesuspectmodel.setMessage("All Record fetched Successfully");
+			crimesuspectmodel.setCrimeSuspect(CrimeSuspect_repo.findAll());
+		}
+    	else{
+			crimesuspectmodel.setMessage("No Record in Crime Suspect");
+		}
+    	return crimesuspectmodel;
     }
 
     public CrimeSuspect saveCrimeSuspect(CrimeSuspect CrimeSuspect)
@@ -76,23 +88,24 @@ public class CrimeSuspect_Services {
 	    return CrimeSuspect_repo.save(CrimeSuspect);
     }
 
-    public CrimeSuspect getCrimeSuspect(BigInteger Id)
+    public Crimesuspectmodel getCrimeSuspect(BigInteger Id)
     {
-		CrimeSuspect c=new CrimeSuspect();
-		try {
-			c= CrimeSuspect_repo.findById(Id).get();
+		Crimesuspectmodel crimesuspectmodel	=new Crimesuspectmodel();
+		Optional<CrimeSuspect> crimeSuspect=CrimeSuspect_repo.findById(Id);
+		if(crimeSuspect.isPresent()){
+			CrimeSuspect crimeSuspect1=new CrimeSuspect();
+			crimeSuspect1=crimeSuspect.get();
+			List <CrimeSuspect>cs=new ArrayList<>();
+			cs.add(crimeSuspect1);
+			crimesuspectmodel.setMessage("Record fetched Successfully!!");
+			crimesuspectmodel.setCrimeSuspect(cs);
 		}
-		catch (Exception e){
-
+		else{
+			crimesuspectmodel.setMessage("No Record in Crime Suspect");
 		}
-
-//		}
-		return c;
-
+		return crimesuspectmodel;
     }
-
-
-    public String deleteCrimeSuspect(BigInteger Id)
+   public String deleteCrimeSuspect(BigInteger Id)
     {
     	String res;
     	if(CrimeSuspect_repo.findById(Id).isPresent()){

@@ -1,6 +1,8 @@
 package com.satyamevjayate.api.services;
 
 import com.satyamevjayate.api.entity.*;
+import com.satyamevjayate.api.model.Crimesuspectmodel;
+import com.satyamevjayate.api.model.Crimevictimmodel;
 import com.satyamevjayate.api.repo.Addresses_Repository;
 import com.satyamevjayate.api.repo.Contact_Repository;
 import com.satyamevjayate.api.repo.CrimeVictim_Repository;
@@ -11,7 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class CrimeVictim_Services {
     @Autowired
@@ -29,9 +34,19 @@ public class CrimeVictim_Services {
     @Autowired
     private Crime_Repository crime_repo;
 
-    public List<CrimeVictim> listAllCrimeVictim()
+    public Crimevictimmodel listAllCrimeVictim()
     {
-        return CrimeVictim_repo.findAll();
+
+        Crimevictimmodel crimevictimmodel=new Crimevictimmodel();
+        if(!CrimeVictim_repo.findAll().isEmpty()){
+
+            crimevictimmodel.setMessage("All Record fetched Successfully");
+            crimevictimmodel.setCrimeVictims(CrimeVictim_repo.findAll());
+        }
+        else{
+            crimevictimmodel.setMessage("No Record in Crime Suspect");
+        }
+        return crimevictimmodel;
     }
 
     public CrimeVictim saveCrimeVictim(CrimeVictim CrimeVictim)
@@ -70,13 +85,35 @@ public class CrimeVictim_Services {
 		return CrimeVictim_repo.save(CrimeVictim);
     }
 
-    public CrimeVictim getCrimeVictim(BigInteger Id)
+    public Crimevictimmodel getCrimeVictim(BigInteger Id)
     {
-        return CrimeVictim_repo.findById(Id).get();
+        Crimevictimmodel crimevictimmodel	=new Crimevictimmodel();
+        Optional<CrimeVictim> crimeVictim=CrimeVictim_repo.findById(Id);
+        if(crimeVictim.isPresent()){
+            CrimeVictim crimeVictim1=new CrimeVictim();
+            crimeVictim1=crimeVictim.get();
+            List <CrimeVictim>cs=new ArrayList<>();
+            cs.add(crimeVictim1);
+            crimevictimmodel.setMessage("Record fetched Successfully!!");
+            crimevictimmodel.setCrimeVictims(cs);
+        }
+        else{
+            crimevictimmodel.setMessage("No Record in Crime Suspect");
+        }
+        return crimevictimmodel;
     }
 
-    public void deleteCrimeVictim(BigInteger Id)
+    public String deleteCrimeVictim(BigInteger Id)
     {
-        CrimeVictim_repo.deleteById(Id);
+        String res="";
+        if (CrimeVictim_repo.findById(Id).isPresent()){
+            CrimeVictim_repo.deleteById(Id);
+            res="Record with "+Id+" id Deleted Successfully!!";
+        }
+        else{
+            res="Record with "+Id+" id Does not exists!!";
+        }
+        return res;
+
     }
 }
