@@ -19,7 +19,6 @@ public class PoliceStationServices {
     
     @Autowired
     private Addresses_Repository address_repo;
-    
     @Autowired
     private Contact_Repository contact_repo;
 

@@ -87,7 +87,6 @@ public class CrimeSuspect_Services {
 
 	    return CrimeSuspect_repo.save(CrimeSuspect);
     }
-
     public Crimesuspectmodel getCrimeSuspect(BigInteger Id)
     {
 		Crimesuspectmodel crimesuspectmodel	=new Crimesuspectmodel();

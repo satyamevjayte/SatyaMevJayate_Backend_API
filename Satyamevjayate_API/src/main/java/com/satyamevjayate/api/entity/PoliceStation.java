@@ -20,7 +20,6 @@ public class PoliceStation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     @Column(name="PoliceStationID")
     private BigInteger PoliceStationID;
     @Column(name="StationName")

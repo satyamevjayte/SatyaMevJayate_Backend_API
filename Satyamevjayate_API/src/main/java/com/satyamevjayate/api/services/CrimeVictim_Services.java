@@ -89,6 +89,7 @@ public class CrimeVictim_Services {
             crimevictimmodel.setMessage("Record fetched Successfully!!");
             crimevictimmodel.setCrimeVictims(cs);
         }
+
         else{
             crimevictimmodel.setMessage("No Record in Crime Suspect");
 

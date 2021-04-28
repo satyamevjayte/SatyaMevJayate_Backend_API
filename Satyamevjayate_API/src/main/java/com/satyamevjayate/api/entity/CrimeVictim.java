@@ -42,7 +42,6 @@ public class CrimeVictim {
     	@OneToOne(optional=false)
         @JoinColumn(name = "ContactId")
         private Contact crmvictimecontact;
-    	
     	@OneToOne(optional=false)
         @JoinColumn(name = "PersonID")
         private Person victimperson;

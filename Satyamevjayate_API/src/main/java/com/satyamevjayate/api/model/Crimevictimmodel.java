@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Crimevictimmodel {
+
         private String message;
         private List<CrimeVictim> crimeVictims;
 }

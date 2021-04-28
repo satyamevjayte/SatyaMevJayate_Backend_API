@@ -21,6 +21,7 @@ public class CrimeSuspect {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="CrimeSuspectID")
+
     private BigInteger CrimeSuspectID;
     @Column(name="CrimeID")
     private BigInteger CrimeID;
