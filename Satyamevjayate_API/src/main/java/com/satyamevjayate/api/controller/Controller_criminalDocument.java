@@ -1,6 +1,8 @@
 package com.satyamevjayate.api.controller;
 
 import com.satyamevjayate.api.entity.CriminalDocument;
+import com.satyamevjayate.api.services.CriminalDocument_services;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -8,9 +10,10 @@ import org.springframework.web.bind.annotation.*;
 import java.math.BigInteger;
 import java.util.List;
 
+@RestController
 public class Controller_criminalDocument {
     @Autowired
-    private com.satyamevjayate.api.services.CriminalDocument_services  CriminalDocument_Services;
+    private CriminalDocument_services  CriminalDocument_Services;
 
     @GetMapping("/criminaldocument")
     public List<CriminalDocument> getAllCriminalDocument() {

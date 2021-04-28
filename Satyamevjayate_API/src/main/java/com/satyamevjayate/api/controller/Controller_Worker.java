@@ -46,7 +46,7 @@ public class Controller_Worker {
 
         Worker.setWorkerID(id);
 
-        Worker_Service.saveWorker(Worker);
+        Worker_Service.editWorker(Worker);
 
         return ResponseEntity.noContent().build();
     }

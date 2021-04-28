@@ -52,7 +52,7 @@ public class Contact {
     private List<Criminal> criminal;
 	
 	
-	@OneToOne(mappedBy = "pscontact")
+	@OneToOne(mappedBy = "policestationcontact")
     @JsonIgnore
     private PoliceStation policestation;
 	

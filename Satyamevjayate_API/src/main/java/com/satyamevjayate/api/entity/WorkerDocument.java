@@ -21,7 +21,7 @@ public class WorkerDocument {
 //    private Long WorkerID;
     
     @ManyToOne(optional=false)
-    @JoinColumn(foreignKey = @ForeignKey(name="WorkerID"), name = "WorkerId",insertable=false, updatable=false)
+    @JoinColumn(name = "WorkerID")
     private Worker workerdoc;
 
     

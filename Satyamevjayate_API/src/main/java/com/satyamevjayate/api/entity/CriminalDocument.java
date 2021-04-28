@@ -12,7 +12,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="criminaldocument")
+@Table(name="criminal_document")
 public class CriminalDocument {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,8 +21,8 @@ public class CriminalDocument {
 //    @Column(name="CriminalID")
 //    private Long CriminalID;
     
-    @ManyToOne(optional=false)
-    @JoinColumn(foreignKey = @ForeignKey(name="CriminalDocumentID"), name = "CriminalDocumentId",insertable=false, updatable=false)
+    @OneToOne(optional=false)
+    @JoinColumn(name = "CriminalID")
     private Criminal criminaldoc;
     
     @Column(name="DocumentType")

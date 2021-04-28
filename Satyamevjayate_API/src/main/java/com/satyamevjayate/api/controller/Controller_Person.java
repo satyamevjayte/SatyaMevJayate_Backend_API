@@ -17,7 +17,7 @@ public class Controller_Person {
         return Person_Services.listAllPerson();
     }
     @GetMapping("/GetPerson/{id}")
-    public Person getAddresses(@PathVariable BigInteger id)
+    public Person getPerson(@PathVariable BigInteger id)
     {
         Person Person= Person_Services.getPerson(id);
         return Person;

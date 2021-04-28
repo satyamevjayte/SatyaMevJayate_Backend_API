@@ -23,8 +23,8 @@ public class CrimeSuspect {
     @Column(name="CrimeSuspectID")
 
     private BigInteger CrimeSuspectID;
-    @Column(name="CrimeID")
-    private BigInteger CrimeID;
+//    @Column(name="CrimeID")
+//    private BigInteger CrimeID;
 //    @Column(name="AddressID")
 //    private BigInteger AddressID;
 //    @Column(name="PersonID")
@@ -32,24 +32,24 @@ public class CrimeSuspect {
 //    @Column(name="ContactID")
 //    private BigInteger ContactID;
     
-    @OneToOne (optional=false)
-    @JoinColumn(name = "AddressId")
+    @ManyToOne(optional=false)
+    @JoinColumn(foreignKey = @ForeignKey(name="AddressID"), name = "AddressId",insertable=false, updatable=false)
     private Addresses susaddress;
 	
-//    @ManyToOne(optional=false)
-//    @JoinColumn(name = "CrimeId")
-//    private Crime crimeid;
+    @ManyToOne(optional=false)
+    @JoinColumn(foreignKey = @ForeignKey(name="CrimeID"), name = "CrimeId")
+    private Crime crimeid;
     
-	@OneToOne(optional=false)
-    @JoinColumn( name = "ContactId")
+	@ManyToOne(optional=false)
+    @JoinColumn(foreignKey = @ForeignKey(name="ContactID"), name = "ContactId",insertable=false, updatable=false)
     private Contact suscontact;
 	
-	@OneToOne(optional=false)
-    @JoinColumn( name = "PersonID")
+	@ManyToOne(optional=false)
+    @JoinColumn(name = "PersonID")
     private Person susperson;
 	
 	
-	 @OneToMany(mappedBy = "crimesusdoc")
+	 @OneToMany(mappedBy = "crimesusdoc", cascade = CascadeType.ALL, orphanRemoval = true)
 	 @JsonIgnore
 	 private List<CrimeSuspectDocument> crimesuspectdocument;
 

@@ -32,21 +32,21 @@ public class Criminal {
     
     
     @ManyToOne(optional=false)
-    @JoinColumn(foreignKey = @ForeignKey(name="AddressID"), name = "AddressId",insertable=false, updatable=false)
+    @JoinColumn(name = "AddressID")
     private Addresses criminaladdress;
 	
 	@ManyToOne(optional=false)
-    @JoinColumn(foreignKey = @ForeignKey(name="ContactID"), name = "ContactId",insertable=false, updatable=false)
+    @JoinColumn(name = "ContactID")
     private Contact criminalcontact;
 	
 	@ManyToOne(optional=false)
-    @JoinColumn(foreignKey = @ForeignKey(name="PersonID"), name = "RoleId",insertable=false, updatable=false)
+    @JoinColumn(name = "PersonID")
     private Person criminalperson;
 	
 	
-	@OneToMany(mappedBy = "criminaldoc", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToOne(mappedBy = "criminaldoc")
     @JsonIgnore
-    private List<CriminalDocument> criminaldocument;
+    private CriminalDocument criminaldocument;
 	
     @Column(name = "Height")
     private Long Height;

@@ -17,6 +17,7 @@ public class CrimeImage_Services {
     @Autowired
     private CrimeImage_Repository CrimeImage_repo;
     
+    @Autowired
     private Crime_Repository crime_repo;
 
     public List<CrimeImage> listAllCrimeImage()
