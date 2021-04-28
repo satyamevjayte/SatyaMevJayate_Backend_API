@@ -15,6 +15,7 @@ import javax.persistence.*;
 @Table(name = "user")
 public class DAOUser {
     @Id
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long userID;
     @Column
