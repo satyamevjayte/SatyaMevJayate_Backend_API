@@ -84,7 +84,6 @@ public class CrimeSuspect_Services {
 	        
 	    return CrimeSuspect_repo.save(CrimeSuspect);
     }
-
     public CrimeSuspect getCrimeSuspect(BigInteger Id)
     {
         return CrimeSuspect_repo.findById(Id).get();

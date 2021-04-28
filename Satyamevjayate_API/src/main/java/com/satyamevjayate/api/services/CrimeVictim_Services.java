@@ -22,7 +22,6 @@ public class CrimeVictim_Services {
     
     @Autowired
     private Addresses_Repository address_repo;
-    
     @Autowired
     private Contact_Repository contact_repo;
     
