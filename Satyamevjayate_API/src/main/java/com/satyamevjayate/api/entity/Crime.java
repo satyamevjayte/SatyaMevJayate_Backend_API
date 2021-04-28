@@ -44,13 +44,13 @@ public class Crime {
     @JsonIgnore
     private List<CrimeImage> crimeImage;
     
-    @OneToMany(mappedBy = "crimeid")
-    @JsonIgnore
-    private List<CrimeSuspect> crimesuspect;
-    
-    @OneToMany(mappedBy = "crmvictimcrimeID")
-    @JsonIgnore
-    private List<CrimeVictim> crimevictim;
+//    @OneToMany(mappedBy = "crimeid")
+//    @JsonIgnore
+//    private List<CrimeSuspect> crimesuspect;
+//
+//    @OneToMany(mappedBy = "crmvictimcrimeID")
+//    @JsonIgnore
+//    private List<CrimeVictim> crimevictim;
     
     @Column(name="CrimeDate")
     private Date CrimeDate;

@@ -29,9 +29,17 @@ public class LawAct_Services {
     	  return LawAct_Repo.findById(Id).get();
       }
       
-      public void  delete_Lawact(BigInteger Id) 
+      public String  delete_Lawact(BigInteger Id)
       {
-    	   LawAct_Repo.deleteById(Id);
+          String res="";
+          if(!LawAct_Repo.findAllById((Iterable<BigInteger>) Id).isEmpty()){
+              LawAct_Repo.deleteById(Id);
+              res="LawAct with "+Id+" is Delete successfully";
+          }
+          else{
+              res="LawAct with "+Id+" is does not exists";
+          }
+    	   return res;
       }
       
 

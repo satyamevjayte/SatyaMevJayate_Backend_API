@@ -47,7 +47,7 @@ public class Worker_Service {
         address.setZipCode(worker.getWorkeraddress().getZipCode());
         worker.setWorkeraddress(address);
         
-    Contact contact=contact_repo.findById(worker.getWorkercontact().getContactID()).orElse(null);
+    Contact contact=contact_repo.findById(worker.getWorkercontact().getContactId()).orElse(null);
     	if(null==contact)
     	{
     		contact=new Contact();

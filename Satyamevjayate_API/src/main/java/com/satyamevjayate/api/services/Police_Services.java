@@ -88,8 +88,8 @@ public class Police_Services {
 	           
 		    PoliceStation policestation=new PoliceStation();
 		    
-		    policestation.setPolicestationaddress(police.getPolicestation().getPolicestationaddress());
-		    policestation.setPolicestationcontact(police.getPolicestation().getPolicestationcontact());
+		    policestation.setPsAddress(police.getPolicestation().getPsAddress());
+		    policestation.setPscontact(police.getPolicestation().getPscontact());
 		    policestation.setStationName(police.getPolicestation().getStationName());
 		    
 		    policestation_repo.save(policestation);

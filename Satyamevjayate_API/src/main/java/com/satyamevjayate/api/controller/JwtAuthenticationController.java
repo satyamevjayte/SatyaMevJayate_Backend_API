@@ -5,6 +5,7 @@ package com.satyamevjayate.api.controller;
 import com.satyamevjayate.api.config.JwtTokenUtil;
 import com.satyamevjayate.api.model.JwtRequest;
 import com.satyamevjayate.api.model.JwtResponse;
+import com.satyamevjayate.api.model.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -44,6 +45,12 @@ import com.satyamevjayate.api.services.JwtUserDetailsService;
 
             return ResponseEntity.ok(new JwtResponse(token));
         }
+
+        @RequestMapping(value = "/register", method = RequestMethod.POST)
+        public ResponseEntity<?> saveUser(@RequestBody UserDTO user) throws Exception {
+            return ResponseEntity.ok(userDetailsService.save(user));
+        }
+
 
         private void authenticate(String username, String password) throws Exception {
             try {

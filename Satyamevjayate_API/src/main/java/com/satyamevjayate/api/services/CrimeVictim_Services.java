@@ -8,10 +8,8 @@ import com.satyamevjayate.api.repo.Contact_Repository;
 import com.satyamevjayate.api.repo.CrimeVictim_Repository;
 import com.satyamevjayate.api.repo.Crime_Repository;
 import com.satyamevjayate.api.repo.Person_Repository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,10 +34,8 @@ public class CrimeVictim_Services {
 
     public Crimevictimmodel listAllCrimeVictim()
     {
-
         Crimevictimmodel crimevictimmodel=new Crimevictimmodel();
         if(!CrimeVictim_repo.findAll().isEmpty()){
-
             crimevictimmodel.setMessage("All Record fetched Successfully");
             crimevictimmodel.setCrimeVictims(CrimeVictim_repo.findAll());
         }
@@ -51,9 +47,7 @@ public class CrimeVictim_Services {
 
     public CrimeVictim saveCrimeVictim(CrimeVictim CrimeVictim)
     {
-
 		Addresses address =new Addresses();
-
 		address.setAddressLine1(CrimeVictim.getVictimaddress().getAddressLine1());
 		address.setAddressLine2(CrimeVictim.getVictimaddress().getAddressLine2());
 		address.setCity(CrimeVictim.getVictimaddress().getCity());
@@ -62,9 +56,7 @@ public class CrimeVictim_Services {
 		address.setZipCode(CrimeVictim.getVictimaddress().getZipCode());
 		address_repo.save(address);
 		CrimeVictim.setVictimaddress(address);
-
 		Contact contact=new Contact();
-
 		contact.setContactNumber(CrimeVictim.getCrmvictimecontact().getContactNumber());
 		contact.setContactEmail(CrimeVictim.getCrmvictimecontact().getContactEmail());
 		contact_repo.save(contact);
