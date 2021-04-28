@@ -26,7 +26,6 @@ import com.satyamevjayate.api.services.JwtUserDetailsService;
 
         @Autowired
         private AuthenticationManager authenticationManager;
-
         @Autowired
         private JwtTokenUtil jwtTokenUtil;
 
