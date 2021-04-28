@@ -34,7 +34,6 @@ public class Contact {
 	@Column(name="ContactEmail")
 	private String ContactEmail;
 	
-	
 	@OneToOne(mappedBy = "policecontact")
     @JsonIgnore
     private Police police;

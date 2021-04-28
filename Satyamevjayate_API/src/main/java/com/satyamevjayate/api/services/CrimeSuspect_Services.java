@@ -101,7 +101,7 @@ public class CrimeSuspect_Services {
 			crimesuspectmodel.setCrimeSuspect(cs);
 		}
 		else{
-			crimesuspectmodel.setMessage("No Record in Crime Suspect");
+			crimesuspectmodel.setMessage("Record with "+Id+" is not exists!!");
 		}
 		return crimesuspectmodel;
     }

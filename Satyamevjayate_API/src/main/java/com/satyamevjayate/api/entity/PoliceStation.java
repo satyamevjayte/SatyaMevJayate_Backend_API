@@ -27,7 +27,6 @@ public class PoliceStation {
     private String StationName;
 //    @Column(name="AddressID")
 //    private BigInteger AddressID;
-//
 //    @Column(name="ContactID")
 //    private BigInteger ContactID;
 

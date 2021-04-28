@@ -25,7 +25,6 @@ public class Controller_CrimeVictim {
         Crimevictimmodel CrimeVictim= CrimeVictim_Services.getCrimeVictim(id);
         return CrimeVictim;
     }
-
     @PostMapping("")
     public String addCrimeVictim(@RequestBody CrimeVictim CrimeVictim)
     {

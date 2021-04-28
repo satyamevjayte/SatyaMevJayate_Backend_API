@@ -22,7 +22,6 @@ private com.satyamevjayate.api.services.CrimeSuspect_Services CrimeSuspect_Servi
     @GetMapping("/crimesuspect/{id}")
     public Crimesuspectmodel getCrimeSuspect(@PathVariable BigInteger id)
     {
-
         Crimesuspectmodel CrimeSuspect= CrimeSuspect_Services.getCrimeSuspect(id);
         return CrimeSuspect;
 
