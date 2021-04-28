@@ -65,7 +65,7 @@ public class Addresses {
     @JsonIgnore
     private Criminal criminal;
 	
-	@OneToOne(mappedBy = "psAddress")
+	@OneToOne(mappedBy = "policestationaddress")
     @JsonIgnore
     private PoliceStation policestation;
 	

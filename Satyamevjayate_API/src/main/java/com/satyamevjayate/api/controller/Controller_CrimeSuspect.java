@@ -13,7 +13,7 @@ public class Controller_CrimeSuspect {
     @Autowired
 private com.satyamevjayate.api.services.CrimeSuspect_Services CrimeSuspect_Services;
 
-    @GetMapping("/crimecuspect")
+    @GetMapping("/crimesuspect")
     public List<CrimeSuspect> getAllCrimeSuspect() {
         return CrimeSuspect_Services.listAllCrimeSuspect();
     }
