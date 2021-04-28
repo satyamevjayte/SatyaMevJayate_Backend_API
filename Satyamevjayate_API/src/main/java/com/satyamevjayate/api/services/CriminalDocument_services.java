@@ -7,10 +7,12 @@ import com.satyamevjayate.api.repo.CriminalDocument_Repository;
 import com.satyamevjayate.api.repo.Criminal_Repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.math.BigInteger;
 import java.util.List;
 
+@Service
 public class CriminalDocument_services {
     @Autowired
     private CriminalDocument_Repository CriminalDocument_repo;
@@ -25,11 +27,12 @@ public class CriminalDocument_services {
 
     public CriminalDocument saveCriminalDocument(CriminalDocument CriminalDocument)
     {
-    	Criminal criminal = Criminal_repo.findById(CriminalDocument.getCriminaldoc().getCriminalID()).orElse(null);
-        if (null == criminal) {
-        	criminal = new Criminal();
-        }
+//    	Criminal criminal = Criminal_repo.findById(CriminalDocument.getCriminaldoc().getCriminalID()).orElse(null);
+//        if (null == criminal) {
+        Criminal criminal = new Criminal();
+//       }
         criminal.setCriminalID(CriminalDocument.getCriminaldoc().getCriminalID());
+        Criminal_repo.save(criminal);
         CriminalDocument.setCriminaldoc(criminal);
         return CriminalDocument_repo.save(CriminalDocument);
     }

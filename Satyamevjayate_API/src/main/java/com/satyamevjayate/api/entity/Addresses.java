@@ -61,9 +61,9 @@ public class Addresses {
     private List<CrimeVictim> crimevictime;
 	
 	
-	@OneToMany(mappedBy = "criminaladdress", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToOne(mappedBy = "criminaladdress")
     @JsonIgnore
-    private List<Criminal> criminal;
+    private Criminal criminal;
 	
 	@OneToOne(mappedBy = "psAddress")
     @JsonIgnore

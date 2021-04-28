@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RestController
 public class Controller_WorkerDocument {
     @Autowired
     private com.satyamevjayate.api.services.WorkerDocument_Services  WorkerDocument_Services;

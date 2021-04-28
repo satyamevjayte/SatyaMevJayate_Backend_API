@@ -9,9 +9,10 @@ import org.springframework.web.bind.annotation.*;
 import java.math.BigInteger;
 import java.util.List;
 
+@RestController
 public class Controller_criminal {
     @Autowired
-    private com.satyamevjayate.api.services.Criminal_Services Criminal_Service;
+    private Criminal_Services Criminal_Service;
 
     @GetMapping("/criminal")
     public List<Criminal> getAllCriminal() {
@@ -46,9 +47,17 @@ public class Controller_criminal {
 
         Criminal.setCriminalID(id);
 
-        Criminal_Service.saveCriminal(Criminal);
+        Criminal_Service.editCriminal(Criminal);
 
         return ResponseEntity.noContent().build();
     }
+    
+//    @PutMapping("/criminal")
+//    public ResponseEntity<Object> editCriminal(@RequestBody Criminal Criminal) {
+//
+//        Criminal_Service.saveCriminal(Criminal);
+//
+//        return ResponseEntity.noContent().build();
+//    }
 
 }

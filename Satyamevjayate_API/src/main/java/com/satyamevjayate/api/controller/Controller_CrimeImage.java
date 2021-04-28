@@ -1,7 +1,6 @@
 package com.satyamevjayate.api.controller;
 
 import com.satyamevjayate.api.entity.CrimeImage;
-import com.satyamevjayate.api.services.CrimeImage_Services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

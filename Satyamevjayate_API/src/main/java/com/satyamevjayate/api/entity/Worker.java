@@ -34,20 +34,20 @@ public class Worker {
 //    private BigInteger ContactID;
     
     
-    @ManyToOne(optional=false)
-    @JoinColumn(foreignKey = @ForeignKey(name="AddressID"), name = "AddressId",insertable=false, updatable=false)
+    @OneToOne(optional=false)
+    @JoinColumn( name = "AddressID")
     private Addresses workeraddress;
 	
-	@ManyToOne(optional=false)
-    @JoinColumn(foreignKey = @ForeignKey(name="ContactID"), name = "ContactId",insertable=false, updatable=false)
+	@OneToOne(optional=false)
+    @JoinColumn( name = "ContactID")
     private Contact workercontact;
 	
-	@ManyToOne(optional=false)
-    @JoinColumn(foreignKey = @ForeignKey(name="PersonID"), name = "PersonId",insertable=false, updatable=false)
+	@OneToOne(optional=false)
+    @JoinColumn(name = "PersonID")
     private Person workerperson;
 	
-	@OneToMany(mappedBy = "workerdoc", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToOne(mappedBy = "workerdoc")
 	@JsonIgnore
-	private List<WorkerDocument> workerdocument;
+	private WorkerDocument workerdocument;
 
 }

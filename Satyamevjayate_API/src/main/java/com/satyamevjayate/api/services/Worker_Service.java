@@ -35,9 +35,47 @@ public class Worker_Service {
 
     public Worker saveWorker(Worker worker)
     {
+//    	Addresses address = address_repo.findById(worker.getWorkeraddress().getAddressID()).orElse(null);
+//        if (null == address) {
+        	Addresses   address = new Addresses();
+//        }
+        address.setAddressLine1(worker.getWorkeraddress().getAddressLine1());
+        address.setAddressLine2(worker.getWorkeraddress().getAddressLine2());
+        address.setCity(worker.getWorkeraddress().getCity());
+        address.setCountry(worker.getWorkeraddress().getCountry());
+        address.setState(worker.getWorkeraddress().getState());
+        address.setZipCode(worker.getWorkeraddress().getZipCode());
+        address_repo.save(address);
+        worker.setWorkeraddress(address);
+        
+//    Contact contact=contact_repo.findById(worker.getWorkercontact().getContactId()).orElse(null);
+//    	if(null==contact)
+//    	{
+    	Contact contact=new Contact();
+//    	}
+    	contact.setContactNumber(worker.getWorkercontact().getContactNumber());
+	    contact.setContactEmail(worker.getWorkercontact().getContactEmail());
+	    contact_repo.save(contact);
+	    worker.setWorkercontact(contact);
+	    
+//	Person person = person_repo.findById(worker.getWorkerperson().getPerson_Id()).orElse(null);
+//        if (null == person) {
+        	Person person = new Person();
+//        }
+        person.setFirst_Name(worker.getWorkerperson().getFirst_Name());
+        person.setLast_Name(worker.getWorkerperson().getLast_Name());
+        person.setGender(worker.getWorkerperson().getGender());
+        person.setDate_of_birth(worker.getWorkerperson().getDate_of_birth());
+        person.setPerson_Image(worker.getWorkerperson().getPerson_Image());
+        person_repo.save(person);
+        worker.setWorkerperson(person);
+       return Worker_repo.save(worker);
+    }
+    public Worker editWorker(Worker worker)
+    {
     	Addresses address = address_repo.findById(worker.getWorkeraddress().getAddressID()).orElse(null);
         if (null == address) {
-            address = new Addresses();
+        	   address = new Addresses();
         }
         address.setAddressLine1(worker.getWorkeraddress().getAddressLine1());
         address.setAddressLine2(worker.getWorkeraddress().getAddressLine2());
@@ -45,6 +83,7 @@ public class Worker_Service {
         address.setCountry(worker.getWorkeraddress().getCountry());
         address.setState(worker.getWorkeraddress().getState());
         address.setZipCode(worker.getWorkeraddress().getZipCode());
+      
         worker.setWorkeraddress(address);
         
     Contact contact=contact_repo.findById(worker.getWorkercontact().getContactId()).orElse(null);
@@ -54,11 +93,12 @@ public class Worker_Service {
     	}
     	contact.setContactNumber(worker.getWorkercontact().getContactNumber());
 	    contact.setContactEmail(worker.getWorkercontact().getContactEmail());
+	  
 	    worker.setWorkercontact(contact);
 	    
 	Person person = person_repo.findById(worker.getWorkerperson().getPerson_Id()).orElse(null);
         if (null == person) {
-            person = new Person();
+        	 person = new Person();
         }
         person.setFirst_Name(worker.getWorkerperson().getFirst_Name());
         person.setLast_Name(worker.getWorkerperson().getLast_Name());
@@ -66,6 +106,7 @@ public class Worker_Service {
         person.setDate_of_birth(worker.getWorkerperson().getDate_of_birth());
         person.setPerson_Image(worker.getWorkerperson().getPerson_Image());
         worker.setWorkerperson(person);
+    
        return Worker_repo.save(worker);
     }
 

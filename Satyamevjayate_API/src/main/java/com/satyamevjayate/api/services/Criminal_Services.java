@@ -10,10 +10,11 @@ import com.satyamevjayate.api.repo.Criminal_Repository;
 import com.satyamevjayate.api.repo.Person_Repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class Criminal_Services {
     @Autowired
     private Criminal_Repository Criminal_repo;
@@ -34,9 +35,50 @@ public class Criminal_Services {
 
     public Criminal saveCriminal(Criminal Criminal)
     {
+//    	 Addresses address = address_repo.findById(Criminal.getCriminaladdress().getAddressID()).orElse(null);
+//	        if (null == address) {
+	         Addresses address = new Addresses();
+//	        }
+	        address.setAddressLine1(Criminal.getCriminaladdress().getAddressLine1());
+	        address.setAddressLine2(Criminal.getCriminaladdress().getAddressLine2());
+	        address.setCity(Criminal.getCriminaladdress().getCity());
+	        address.setCountry(Criminal.getCriminaladdress().getCountry());
+	        address.setState(Criminal.getCriminaladdress().getState());
+	        address.setZipCode(Criminal.getCriminaladdress().getZipCode());
+	        address_repo.save(address);
+	        Criminal.setCriminaladdress(address);
+	        
+//	    Contact contact=contact_repo.findById(Criminal.getCriminalcontact().getContactId()).orElse(null);
+//	    	if(null==contact)
+//	    	{
+	    	Contact	contact=new Contact();
+//	    	}
+	    	contact.setContactNumber(Criminal.getCriminalcontact().getContactNumber());
+		    contact.setContactEmail(Criminal.getCriminalcontact().getContactEmail());
+		    contact_repo.save(contact);
+		    Criminal.setCriminalcontact(contact);
+		    
+//		Person person = person_repo.findById(Criminal.getCriminalperson().getPerson_Id()).orElse(null);
+//	        if (null == person) {
+	         Person person = new Person();
+//	        }
+	        person.setFirst_Name(Criminal.getCriminalperson().getFirst_Name());
+	        person.setLast_Name(Criminal.getCriminalperson().getLast_Name());
+	        person.setGender(Criminal.getCriminalperson().getGender());
+	        person.setDate_of_birth(Criminal.getCriminalperson().getDate_of_birth());
+	        person.setPerson_Image(Criminal.getCriminalperson().getPerson_Image());
+	        person_repo.save(person);
+	        Criminal.setCriminalperson(person);
+        
+	     return Criminal_repo.save(Criminal);
+    }
+
+    
+    public Criminal editCriminal(Criminal Criminal)
+    {
     	 Addresses address = address_repo.findById(Criminal.getCriminaladdress().getAddressID()).orElse(null);
 	        if (null == address) {
-	            address = new Addresses();
+	          address = new Addresses();
 	        }
 	        address.setAddressLine1(Criminal.getCriminaladdress().getAddressLine1());
 	        address.setAddressLine2(Criminal.getCriminaladdress().getAddressLine2());
@@ -44,6 +86,7 @@ public class Criminal_Services {
 	        address.setCountry(Criminal.getCriminaladdress().getCountry());
 	        address.setState(Criminal.getCriminaladdress().getState());
 	        address.setZipCode(Criminal.getCriminaladdress().getZipCode());
+	       
 	        Criminal.setCriminaladdress(address);
 	        
 	    Contact contact=contact_repo.findById(Criminal.getCriminalcontact().getContactId()).orElse(null);
@@ -53,22 +96,24 @@ public class Criminal_Services {
 	    	}
 	    	contact.setContactNumber(Criminal.getCriminalcontact().getContactNumber());
 		    contact.setContactEmail(Criminal.getCriminalcontact().getContactEmail());
+		  
 		    Criminal.setCriminalcontact(contact);
 		    
 		Person person = person_repo.findById(Criminal.getCriminalperson().getPerson_Id()).orElse(null);
 	        if (null == person) {
-	            person = new Person();
+	         person = new Person();
 	        }
 	        person.setFirst_Name(Criminal.getCriminalperson().getFirst_Name());
 	        person.setLast_Name(Criminal.getCriminalperson().getLast_Name());
 	        person.setGender(Criminal.getCriminalperson().getGender());
 	        person.setDate_of_birth(Criminal.getCriminalperson().getDate_of_birth());
 	        person.setPerson_Image(Criminal.getCriminalperson().getPerson_Image());
+	      
 	        Criminal.setCriminalperson(person);
         
 	     return Criminal_repo.save(Criminal);
     }
-
+    
     public Criminal getCriminal(Long Id)
     {
         return Criminal_repo.findById(Id).get();

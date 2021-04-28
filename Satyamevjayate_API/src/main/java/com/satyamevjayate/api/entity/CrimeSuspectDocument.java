@@ -20,7 +20,7 @@ public class CrimeSuspectDocument {
     private BigInteger DocumentID;
     
     @ManyToOne(optional=false)
-    @JoinColumn(name = "CrimeSuspectID")
+    @JoinColumn(foreignKey = @ForeignKey(name="CrimeSuspectID"), name = "AddressId",insertable=false, updatable=false)
     private CrimeSuspect crimesusdoc;
     
   
